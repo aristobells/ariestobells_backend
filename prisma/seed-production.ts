@@ -2,6 +2,8 @@ import { PrismaClient, Role, Category } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
+
 
 async function main() {
  console.log('🌱 Starting production seed...');
