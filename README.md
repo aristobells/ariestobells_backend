@@ -1,98 +1,292 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🛒 AriesToBells E-commerce API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A production-ready E-commerce REST API built with **Node.js** and **NestJS**, designed to power a modern online store.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project demonstrates secure authentication, role-based access control, order processing, payment integration, product management with variants, and scalable API design.
 
-## Description
+**Live API Documentation:**  
+https://ariestobells.up.railway.app/api/docs#/
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 📌 Overview
 
-```bash
-$ npm install
-```
+AriesToBells API provides a complete backend solution for an online store, including:
 
-## Compile and run the project
+- User authentication with email verification and password reset
+- Product and category management with slug-based routing
+- Shopping cart system
+- Order creation and tracking
+- Payment processing via Paystack
+- Image uploads via Cloudinary
+- Role-based admin operations
+- Product filtering, pagination, and sorting
 
-```bash
-# development
-$ npm run start
+The architecture follows clean NestJS modular structure, separation of concerns, and scalable service patterns.
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## 🛠 Tech Stack
 
-## Run tests
+- **Runtime:** Node.js  
+- **Framework:** NestJS  
+- **Database:** PostgreSQL  
+- **Authentication:** JWT  
+- **Password Hashing:** bcrypt  
+- **Payments:** Paystack  
+- **Image Storage:** Cloudinary  
+- **Email Service:** SMTP  
+- **Deployment:** Railway  
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## 🏗 Architecture Highlights
 
-# test coverage
-$ npm run test:cov
-```
+- Modular domain-based structure (Auth, Products, Orders, Payments, etc.)
+- DTO validation using class-validator
+- JWT guards and role-based guards
+- Slug-based resource retrieval
+- Pagination and filtering at query level
+- Centralized error handling
+- Secure webhook handling for payments
+- Environment-driven configuration
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+# 🔐 Authentication & Authorization
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Authentication
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+- JWT-based authentication
+- Secure password hashing with bcrypt
+- Email verification required before full access
+- Password reset flow using token-based system
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Role-Based Access Control
 
-## Resources
+Two main roles:
 
-Check out a few resources that may come in handy when working with NestJS:
+- `CUSTOMER`
+- `ADMIN`
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Admin-only routes include:
 
-## Support
+- Product management
+- Category management
+- Order status updates
+- Payment administration
+- File uploads
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Protected endpoints require:
+Authorization: Bearer <JWT_TOKEN>
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# 📦 API Modules & Endpoints
 
-## License
+The API is organized into 8 main modules.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+## 1️⃣ Authentication (7 Endpoints)
+
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| POST | `/api/v1/auth/register` | Register new user |
+| POST | `/api/v1/auth/login` | Login |
+| GET | `/api/v1/auth/profile` | Current user profile |
+| POST | `/api/v1/auth/verify-email` | Verify email |
+| POST | `/api/v1/auth/resend-verification` | Resend verification |
+| POST | `/api/v1/auth/forgot-password` | Request password reset |
+| POST | `/api/v1/auth/reset-password` | Reset password |
+
+---
+
+## 2️⃣ Categories (6 Endpoints)
+
+Supports both ID-based and slug-based retrieval.
+
+Admin-only:
+- Create
+- Update
+- Delete
+---
+
+## 3️⃣ Products (7 Endpoints)
+
+Supports:
+
+- Search
+- Category filtering
+- Price range filtering
+- Featured products
+- Pagination
+- Sorting
+- Slug lookup
+- Product variants (size, color, SKU, stock)
+
+Example query:
+GET /api/v1/products?search=leather&minPrice=25000&maxPrice=50000&page=1&limit=10
+
+---
+
+## 4️⃣ Cart (6 Endpoints)
+
+- Add item
+- Update quantity
+- Remove item
+- Clear cart
+- Get item count
+- Get full cart
+
+Cart is user-scoped and JWT-protected.
+
+---
+
+## 5️⃣ User Addresses (6 Endpoints)
+
+- Multiple addresses per user
+- Default address support
+- Full CRUD operations
+
+---
+
+## 6️⃣ Orders (8 Endpoints)
+
+- Create order from cart
+- Cancel order
+- View user orders
+- Order statistics
+- Admin order management
+- Order status updates
+
+Order lifecycle supports status tracking.
+
+---
+
+## 7️⃣ Payments (6 Endpoints)
+
+- Initialize payment
+- Verify transaction
+- Secure Paystack webhook
+- Retrieve payment by order
+- Admin payment stats
+
+Payments are linked directly to orders.
+
+---
+
+## 8️⃣ Upload (5 Endpoints)
+
+Admin-only image uploads:
+
+- Single image upload
+- Multiple image upload
+- Category image upload
+- Delete operations
+
+Integrated with Cloudinary.
+
+---
+
+# 📘 Example API Usage
+
+## Register User
+
+```json
+POST /api/v1/auth/register
+
+{
+  "email": "john.doe@example.com",
+  "password": "Password1",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "+2348012345678"
+}
+Response 
+{
+  "user": {
+    "id": "uuid",
+    "email": "john.doe@example.com",
+    "role": "CUSTOMER"
+  },
+  "token": "jwt_token_here",
+  "message": "Registration successful"
+}
+Create Order → Initialize Payment
+POST /api/v1/orders
+{
+  "addressId": "user-address-id"
+}
+POST /api/v1/payments/initialize
+{
+  "orderId": "order-id"
+}
+Returns Paystack authorization URL for checkout.
+
+⚙️ Environment Variables
+Create a .env file in the root directory:
+
+# Database
+DATABASE_URL=
+
+# JWT
+JWT_SECRET=
+JWT_EXPIRATION=7d
+
+# App
+PORT=3000
+NODE_ENV=development
+
+# Paystack
+PAYSTACK_SECRET_KEY=
+PAYSTACK_PUBLIC_KEY=
+PAYSTACK_CALLBACK_URL=
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+# Email
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USER=
+MAIL_PASSWORD=
+MAIL_FROM=
+
+# URLs
+FRONTEND_URL=
+BACKEND_URL=
+
+🚀 Local Setup
+Prerequisites
+Node.js v16+
+PostgreSQL
+Paystack account
+Cloudinary account
+
+📊 Production Deployment
+- Currently deployed on Railway.
+- Production checklist:
+- Secure JWT secret
+- Configure production database
+- Configure Paystack webhook URL
+- Set NODE_ENV=production
+- Enable secure CORS policy
+
+Live documentation:
+https://ariestobells.up.railway.app/api/docs#/
+
+📈 Project Value
+
+This API demonstrates:
+
+- Clean modular backend architecture
+- Secure authentication and RBAC
+- Real-world payment integration
+- Scalable product and order system
+- Cloud service integrations
+- Production deployment experience
+
+If you're reviewing this as a recruiter, feel free to explore the live Swagger documentation and test the endpoints directly.
